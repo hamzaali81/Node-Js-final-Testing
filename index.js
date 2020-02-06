@@ -7,6 +7,7 @@
 const fs = require('fs'); //return an object alots of function
 const http = require('http'); //this module networking capabilities building http server
 const url = require('url');
+const replaceTemplate=require('./modules/replaceTemplate')
 
 ////////////////////////////////////////////
 //////FILES
@@ -87,19 +88,19 @@ const url = require('url');
 //Specifying url
 // Synchronized version to execute top level code at once. Write in the beginning 
 
-const replaceTemplate=(temp,product)=>{
-    let output =temp.replace(/{%PRODUCTNAME%}/g,product.productName) //not use quote use regular exprssion
-        output=output.replace(/{%IMAGE%}/g ,product.image) //not a good practice directly manipulate
-        output=output.replace(/{%PRICE%}/g ,product.price)
-        output=output.replace(/{%FROM%}/g ,product.from)
-        output=output.replace(/{%NUTRIENTS%}/g ,product.nutrients)
-        output=output.replace(/{%QUANTITY%}/g ,product.quantity)
-        output=output.replace(/{%DESCRIPTION%}/g ,product.description)
-        output=output.replace(/{%ID%}/g ,product.id)
+// const replaceTemplate=(temp,product)=>{
+//     let output =temp.replace(/{%PRODUCTNAME%}/g,product.productName) //not use quote use regular exprssion
+//         output=output.replace(/{%IMAGE%}/g ,product.image) //not a good practice directly manipulate
+//         output=output.replace(/{%PRICE%}/g ,product.price)
+//         output=output.replace(/{%FROM%}/g ,product.from)
+//         output=output.replace(/{%NUTRIENTS%}/g ,product.nutrients)
+//         output=output.replace(/{%QUANTITY%}/g ,product.quantity)
+//         output=output.replace(/{%DESCRIPTION%}/g ,product.description)
+//         output=output.replace(/{%ID%}/g ,product.id)
             
-    if(!product.organic)  output=output.replace(/{%NOT_ORGANIC%}/g ,'not-organic') //not-organic class name
-     return output;
-}
+    // if(!product.organic)  output=output.replace(/{%NOT_ORGANIC%}/g ,'not-organic') //not-organic class name
+    //  return output;
+// }
 
 const tempOverview=fs.readFileSync(`${__dirname}/templates/template-overview.htm`,'utf-8');
 const tempCard=fs.readFileSync(`${__dirname}/templates/template-card.htm`,'utf-8');
@@ -115,8 +116,16 @@ const server = http.createServer((req, res) => {
     // res.end("Hello request")
 
     //Overview
-    const pathName = req.url;
-    if (pathName === '/' || pathName === '/overview') {
+    // console.log(req.url)
+    const {query,pathname}=url.parse(req.url,true)
+    // console.log(url.parse(req.url,true)) //actually parse query into an object
+    // const pathname = req.url;
+    
+
+
+
+
+    if (pathname === '/' || pathname === '/overview') {
         //Actually load template overview each tim their is a new request for this route to adjust 
         
           res.writeHead(200,{'Content-type':'text/html',})
@@ -128,12 +137,20 @@ const server = http.createServer((req, res) => {
         
         // res.end("This is the overview")
     }
-    //Product
-    else if (pathName === '/product') {
+     //Product
+     //Dynamic coming from json file
+
+
+    else if (pathname === '/product') {
+         res.writeHead(200,{'Content-type':'text/html',})
+        const product=dataObj[query.id] //position coming the query id
+        const output = replaceTemplate(tempProduct,product)
+        res.end(output)
+        // console.log(query);
         res.end("This is the product")
     }
     //Api
-    else if(pathName==='/api'){
+    else if(pathname==='/api'){
     // fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8')
     //,(err,data)=>{
     // console.log(productdata)
