@@ -8,7 +8,7 @@ const fs = require('fs'); //return an object alots of function
 const http = require('http'); //this module networking capabilities building http server
 const url = require('url');
 const replaceTemplate=require('./modules/replaceTemplate')
-
+const slugify=require('slugify')
 ////////////////////////////////////////////
 //////FILES
 //Blocking Synchronous way
@@ -40,6 +40,10 @@ const replaceTemplate=require('./modules/replaceTemplate')
 // })
 // })
 //  
+
+
+
+
 
 
 ///////////////////////////////////////////////////////////
@@ -112,6 +116,15 @@ const tempProduct=fs.readFileSync(`${__dirname}/templates/template-product.htm`,
 const data=fs.readFileSync(`${__dirname}/dev-data/data.json`,'utf-8'); //Top level code 
     // console.log(productdata)
     const dataObj=JSON.parse(data) //array obj
+   
+   
+   ////////////////////////////////////////////
+   /////////////////////////////including third party module
+    console.log(slugify('Fresh Avocados',{lower:true}))
+    const slugs=dataObj.map(el=> slugify(el.productName,{lower:true}))
+    console.log(slugs);
+    ////////////////////////////////////////////////////////
+
 const server = http.createServer((req, res) => {
     // res.end("Hello request")
 
@@ -155,7 +168,7 @@ const server = http.createServer((req, res) => {
     //,(err,data)=>{
     // console.log(productdata)
     const productData=JSON.parse(data)
-        res.writeHead(200,{'Content-type':'application/json',})
+        res.writeHead(200,{'Content-type':'application/json',});
     //  const productdata=JSON.parse(data)
     res.end(data)
     // }) //variable always translate script
