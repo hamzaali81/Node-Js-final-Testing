@@ -10,11 +10,17 @@
 //Transform stream
 
 
+//Solution 1 
+//In this case this solution is normally actually entire file have to load into memory because only that if after its ready only that 
+//Now this problem file is big and ton of request application crash
+//Because resources will very quickly run out of resources
+//Work in small company . But production you cannot use this solution
+
 const fs=require('fs');
 const server =require('http').createServer();  //http object
 
 server.on('request',(req,res)=>{
-    //Solution 1
+    //Solution 1 || loading File
     fs.readFile('test-file.txt','utf-8',(err,data)=>{
         res.end(data)
         if(err){console.log(err)}
