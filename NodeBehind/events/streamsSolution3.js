@@ -9,10 +9,11 @@ const server =require('http').createServer();  //http object
 
 //This stream is here duplex
 //pipe method fix backpressure problem automatically solve
+//pipe method easiest way of consuming and writting streams
 server.on('request',(req,res)=>{
 const readable=fs.createReadStream("test-file.txt")
 //readableSource.pipe(writeDestination)
-readable.pipe(res)
+readable.pipe(res);
 })
 
 server.listen(3000,'127.0.0.1',()=>{
