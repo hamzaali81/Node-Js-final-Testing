@@ -17,24 +17,7 @@ const tours=JSON.parse(
         }                 
     })
 });
-////////////////////////////////////////////////////////////////////////////////
-app.get('/api/v1/tours/:id ',(req,res)=>{  //add that variable (:id define) (? optional parameter )
-    console.log(req.params) //parameter automatically assign value
 
-    const id=req.params.id * 1;  //js trick convert string into a number
-    const tour=tours.find(el=> el.id === id)  //Use in arrays  //It is basically loop to the array
-    //and in each of the iteration 
-    res.status(200).json({
-        status:'sucess',
-        //  result: tours.length,
-         data: { 
-             tours
-         }                 
-     })
-});
-
-///////////////////////////////////////////////////////////////////////////////////////////
-//api
 app.post('/api/v1/tours',(req,res)=>{
     // console.log(req.body) 
     const newID=tours[tours.length-1].id;
