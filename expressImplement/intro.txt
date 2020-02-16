@@ -2,4 +2,7 @@
 2.Express contains a very set of robust features: Complex routing, easier handling of Request
 and responses,middleware server-side rendering etc
 3. Express allows us for rapid app development of nodejs application: we don't have re-invent wheel.
- 
+4.We don't have same code over and over again.
+5.Each implement really complex routing e.g some templating system.
+6.Express makes it easier to organized our application into MVC artitecture  
+7.Express 100% nodejs under the hood and some things work. 
