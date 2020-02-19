@@ -69,29 +69,8 @@ app.post('/api/v1/tours',(req,res)=>{
 // We received the entire new updated object and with patch we put only the expected values
 //object will updated
 //patch simply properties update
-// app.patch('/api/v1/tours/:id',(req,res)=>{
-//     if(req.param.id * 1>tours.length) 
-//     {
-//             return res.status(404).json({
-//             status:'fail',
-//              message:'Invalid id'
-//         });
-//     }
-// //patch requst actually mean updat data
-// //dif verbs like status code and send back
-// res.status(200).json({
-//       status:'sucess',
-//       data:{
-//           tour:'<updated tour here!..............>'
-//       }
-//   })
-// })
-
-// ///////////////////////////////////////////////////////////////////////////////////////////////
-//We are dealing with files which is real world scenerio use handle_error
-//Delete Request
-app.delete('/api/v1/tours/:id',(req,res)=>{
-    if(req.param.id * 1>tours.length) 
+app.patch('/api/v1/tours/:id',(req,res)=>{
+    if(req.params.id * 1 > tours.length)  // convert id into numbers
     {
             return res.status(404).json({
             status:'fail',
@@ -100,20 +79,13 @@ app.delete('/api/v1/tours/:id',(req,res)=>{
     }
 //patch requst actually mean updat data
 //dif verbs like status code and send back
-res.status(204).json({  //Means no content
+res.status(200).json({
       status:'sucess',
-    //   data:{
-    //       tour:'<updated tour here!..............>'
-    //   }
-    data: null
+      data:{
+          tour:'<updated tour here!..............>'
+      }
   })
 })
-
-
-
-
-
-
 
 
 
