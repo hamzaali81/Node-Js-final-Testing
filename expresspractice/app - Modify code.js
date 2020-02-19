@@ -2,28 +2,15 @@ const express=require('express')
 const fs = require('fs')
 
 const app=express();
-app.use(express.json()); //use middleware actually (use) is middleware
-////////////////////////////////////////////////////////
-//Midlleware global 
- app.use((req,res,next)=>{  //next is convention in express
-     console.log('Hello from middleware');
-     next(); //actually specify call function 
-//Midlleware not implement
-})
+app.use(express.json());  
 
-app.use((req,res,next)=>{
-    req.requestTime=new Date().toISOString();  //converted a nice readable string
-    next();
-})
-
-////////////////////////////////////////////////////////
-   const tours=JSON.parse( fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
+const tours=JSON.parse(
+    fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
+    );
     
     const getAllTours=(req,res)=>{
-        console.log(req.requestTime);
         res.status(200).json({
             status:'sucess',
-            requestedAt: req.requestTime,
             result: tours.length,
             data: { 
                 tours
@@ -35,8 +22,10 @@ const getTour=  (req,res)=>{
         console.log(req.params) 
         const id=req.params.id * 1;  
         const tour=tours.find(el=> el.id === id) 
+    
             if(!tour){
-              return res.status(404).json({
+    
+            return res.status(404).json({
                 status:'fail',
             message:'Invalid id'
         });
@@ -95,24 +84,16 @@ res.status(204).json({  //Means no content
 
 // app.get('/api/v1/tours', getAllTours); //Get function directly
 //app.post('/api/v1/tours',createTour)
-// app.get('/api/v1/tours/:id',getTour);
-// app.patch('/api/v1/tours/:id',updateTour)
-// app.delete('/api/v1/tours/:id',deleteTour)
-
+app.get('/api/v1/tours/:id',getTour);
+app.patch('/api/v1/tours/:id',updateTour)
+app.delete('/api/v1/tours/:id',deleteTour)
+////////////////////////////////////////////////////////////////////////////
+//code more modify
+//The two route handlers reuse
 app
 .route('/api/v1/tours')
 .get(getAllTours)
 .post(createTour)
-////////////////////////////////////////////////////////////////////////////
-//code more modify
-//The two route handlers reuse
-////////////////////////////////////
-// app.use((req,res,next)=>{  //next is convention in express
-//     console.log('Hello from middleware');
-//     next(); //actually specify call function 
-
-// }) //Middleware apply after route handler 
-///////////////////////////////////////////////////////////////////////////
 
 app
 .route('/api/v1/tours/:id')
