@@ -1,10 +1,17 @@
+//Morgan is a very popular logging middleware(third party plugin))
+//Midlleware see allows data to the console
+//npm i morgan
+//morgan is not a development dependency is a simpler regular depedency
 const express=require('express')
 const fs = require('fs')
+const morgan=require('morgan');
 
 const app=express();
 app.use(express.json()); //use middleware actually (use) is middleware
 ////////////////////////////////////////////////////////
 //Midlleware global 
+
+//1) Middlewares
  app.use((req,res,next)=>{  //next is convention in express
      console.log('Hello from middleware');
      next(); //actually specify call function 
@@ -19,6 +26,7 @@ app.use((req,res,next)=>{
 ////////////////////////////////////////////////////////
    const tours=JSON.parse( fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
     
+   //2) Route handlers
     const getAllTours=(req,res)=>{
         console.log(req.requestTime);
         res.status(200).json({
@@ -99,6 +107,8 @@ res.status(204).json({  //Means no content
 // app.patch('/api/v1/tours/:id',updateTour)
 // app.delete('/api/v1/tours/:id',deleteTour)
 
+
+//3)Routes
 app
 .route('/api/v1/tours')
 .get(getAllTours)
@@ -120,6 +130,10 @@ app
 .patch(updateTour)
 .delete(deleteTour)
 
+
+
+
+//4)START Server
 const port=3000;
 app.listen(port,()=>{
     console.log(`App running on port ${port}`)
