@@ -18,15 +18,6 @@ const tours=JSON.parse(
 next();
     }
 
-exports.checkBody=(req,res,next,val)=>{
-    if(!req.body.name || !req.body.price){
-        return res.status(404).json({
-            status:'fail',
-            message:'Missing name price!'
-        })
-    }
-   next(); 
-}
 
 exports.getAllTours=(req,res)=>{
     console.log(req.requestTime);

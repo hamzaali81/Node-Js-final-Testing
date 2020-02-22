@@ -3,8 +3,6 @@
 //Param middleware is certain parameter
 //the only parameter that will be might in our route url is the id
 
-//Chaining multiple middleware
-
 const express=require('express');  //import
 const tourController=require('./../controllers/tourController')
 // const {getAllTours,}=require('./../controllers/tourController')  this is destructuring 
@@ -90,15 +88,8 @@ const tourController=require('./../controllers/tourController')
 
 const router=express.Router();   //tourRouter
 router.param('id',tourController.checkID)
-
-////////////////////////////////////////////////////////////////////////////////////////////
-
-//Create a checkBody middleware.
-//Check if body contains name property and price property.
-//If not, send back 400 (bad request).
-//Add it to the post handler stack 
-
-//,(req,res,next,val)=>{  //param function 4th argument is value of parameter
+//,(req,
+//res,next,val)=>{  //param function 4th argument is value of parameter
     //  console.log(`Tour id is ${val}`)  //val hold parameter
     //Middleware function only specify tour route
     //So this kind of local mini application 
@@ -109,7 +100,7 @@ router.param('id',tourController.checkID)
 router //Actually a real middleware  tourRouter
 .route('/')    //.route('/api/v1/tours')
 .get(tourController.getAllTours)
-.post(tourController.checkBody,tourController.createTour) //chaining multiple middleware
+.post(tourController.createTour)
 
 router    //tourRouter
 .route('/:id')  //.route('/api/v1/tours/:id')

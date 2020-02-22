@@ -1,26 +1,14 @@
-//files that are sitting in our file system that we currently cannot access using all routes
-
 const express=require('express')
 const morgan=require('morgan');
 
 const tourRouter=require('./routes/tourRoutes') //don't need json
 const userRouter=require('./routes/userRoutes') //import userRouter
 
-
 const app=express();
-//1)Middleware
-///////////////////////////////////////////////////////////
-//testing config file
-console.log(process.env.NODE_ENV)
-if(process.env.NODE_ENV==='development'){
-    app.use(morgan('dev'))
-}
-//testing config file
-//////////////////////////////////////////////////
 app.use(morgan('dev'))  //Tiny
+
 app.use(express.json()); 
- 
-app.use(express.static(`${__dirname}/public`))   //serving static files                         //build in middleware
+
 
  app.use((req,res,next)=>{  //next is convention in express
      console.log('Hello from middleware');
