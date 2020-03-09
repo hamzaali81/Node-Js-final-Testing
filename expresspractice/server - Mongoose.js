@@ -35,39 +35,39 @@ const DB=process.env.DATABASE.replace('<password>',process.env.DATABASE_PASSWORD
 // Mongoose schema is to describe our data, to set default values to validate the data, and all kinds of stuff like that
 //start very simple schema for tours
 
-// const tourSchema=new mongoose.Schema({
-//     //Mongoose is actually a uses native javascript data types
+const tourSchema=new mongoose.Schema({
+    //Mongoose is actually a uses native javascript data types
     
-//     //name: String,
-//     //rating: Number,
-//     //price:Number
-//     name:{
-//         type: String,require: [true,'A tour must have a name'],
-//         unique:true
-//     },  //this object is schema type option
-//     rating:
-//     {
-//         type: Number,
-//         default: 4.5
-//     },
-//     price:{
-//         type: Number,
-//         require: [true,'A tour must have a price']
-//     } //validator to validate date
-// })
+    //name: String,
+    //rating: Number,
+    //price:Number
+    name:{
+        type: String,require: [true,'A tour must have a name'],
+        unique:true
+    },  //this object is schema type option
+    rating:
+    {
+        type: Number,
+        default: 4.5
+    },
+    price:{
+        type: Number,
+        require: [true,'A tour must have a price']
+    } //validator to validate date
+})
 
-// const Tour=mongoose.model('Tour',tourSchema)  //model name alwys use upperCase
-// const testTour=new Tour({  //test tour instance of model
-//     name: 'The park Camper',
-//     price: 997
-//     // rating: 4.7,
-//     // price: 497
-// });
-// testTour.save().then(doc=>{
-//     console.log(doc); //async await save in documents 
-// }).catch(err=>{
-//     console.log('ERROR !:',err)
-// })
+const Tour=mongoose.model('Tour',tourSchema)  //model name alwys use upperCase
+const testTour=new Tour({  //test tour instance of model
+    name: 'The park Camper',
+    price: 997
+    // rating: 4.7,
+    // price: 497
+});
+testTour.save().then(doc=>{
+    console.log(doc); //async await save in documents 
+}).catch(err=>{
+    console.log('ERROR !:',err)
+})
 
 ////////////////////////////////////////////////////////////////
 //})                 

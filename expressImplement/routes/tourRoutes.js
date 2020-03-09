@@ -89,7 +89,7 @@ const tourController=require('./../controllers/tourController')
 // }
 
 const router=express.Router();   //tourRouter
-router.param('id',tourController.checkID)
+// router.param('id',tourController.checkID)
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
