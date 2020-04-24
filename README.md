@@ -2,18 +2,19 @@
 # Simple web API , Server,Routing, Read and Write 
 
 Npm Information:
-1.Most of the package on npm follow these (^) semantic tags.
-(^) by default current version major and minor version release.
-(~) only safer version patch fix only accept patch release
-(*) bumped all version
+1.Most of the package on npm follow these 
+_ (^) semantic tags.
+ _ (^) by default current version major and minor version release.
+_ (~) only safer version patch fix only accept patch release
+ _ (*) bumped all version
 2.Certain package install use.
-3.node-modeules folder never share.
-4.Always share your package.json file and package-lock.json
+_ node-modeules folder never share.
+_ Always share your package.json file and package-lock.json
 
-npm outdated
-npm i slugify@1.0.0.0
-npm updated slugify
-npm unistall slugify
+1. npm outdated
+2. npm i slugify@1.0.0.0
+3. npm updated slugify
+4. npm unistall slugify
 
 Topics.
 1.Server
