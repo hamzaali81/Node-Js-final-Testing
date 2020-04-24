@@ -2,7 +2,7 @@
 # Simple web API , Server,Routing, Read and Write 
 
 Npm Information:
-1 .Most of the package on npm follow these 
+1. Most of the package on npm follow these 
    - (^) semantic tags.
    - (^) by default current version major and minor version release.
    - (~) only safer version patch fix only accept patch release
