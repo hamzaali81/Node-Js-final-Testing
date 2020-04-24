@@ -35,5 +35,5 @@ Use in node application.
 Setting up prettier
 
 # Express
-- Use project
-npm install
+1. Use project
+  - npm install
