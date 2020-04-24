@@ -25,13 +25,15 @@ Use in node application.
 2. npm install
 3. npm run start(script start)
 
-Using in Node Application
-slugify for url more readable
-npm install slugify
-(e.g)node-farm  -(slug)
-npm i nodemon --save-dev
+3.Using in Node Application
+  - slugify for url more readable
+  - npm install slugify
+  - (e.g)node-farm  -(slug)
+   - npm i nodemon --save-dev
 
 
 Setting up prettier
 
 # Express
+- Use project
+npm install
