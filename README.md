@@ -39,6 +39,6 @@ Setting up prettier
   - npm install
 
 2. Task Complete.
-[x] Express Implement.
-[x] Connect Mongodb.
-[]  Use Moongose.
+- [x] Express Implement.
+- [x] Connect Mongodb.
+- [ ]  Use Moongose.
